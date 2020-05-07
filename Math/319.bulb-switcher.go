@@ -3,10 +3,12 @@
  *
  * [319] Bulb Switcher
  */
-
 // @lc code=start
 
 // 这个规律这辈子也是不可能总结出来的
+// 35/35 cases passed (164 ms)
+// Your runtime beats 100 % of golang submissions
+// Your memory usage beats 100 % of golang submissions (1.9 MB)
 func bulbSwitch(n int) int {
     return mySqrt(n)
 }

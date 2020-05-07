@@ -32,6 +32,7 @@ func findNthDigit(n int) int {
 		firstNumber := int(math.Pow10(digitCount - 1))
 		currMax := 9 * firstNumber * digitCount
 		if n < currMax {
+			// 兼容输入为 0 的情况
 			return int(fmt.Sprintf("%d", firstNumber+n/digitCount)[n%digitCount] - '0')
 		}
 		n -= currMax
