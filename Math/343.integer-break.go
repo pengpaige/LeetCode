@@ -8,6 +8,10 @@
 
 // 学会数学只能让代码更快，学会递归却能让你找工作更快
 
+// 50/50 cases passed (0 ms)
+// Your runtime beats 100 % of golang submissions
+// Your memory usage beats 100 % of golang submissions (1.9 MB)
+
 var mem = map[int]int{}
 
 func integerBreak(n int) int {
