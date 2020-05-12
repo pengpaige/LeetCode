@@ -14,6 +14,7 @@ func integerReplacement(n int) int {
 
 
 func dfs(n int) int {
+	var ret int
 	if count, ok := mem[n]; ok {
 		return count
 	}
@@ -21,9 +22,10 @@ func dfs(n int) int {
 		return n-1
 	}
 	if n%2 == 0 {
-		return dfs(n/2) + 1
+		ret = dfs(n/2) + 1
+	}else {
+		ret = min(dfs(n+1), dfs(n-1)) + 1
 	}
-	ret := min(dfs(n+1), dfs(n-1)) + 1
 	mem[n] = ret
 	return ret
 }
