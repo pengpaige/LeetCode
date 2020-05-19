@@ -5,6 +5,8 @@
  */
 
 // @lc code=start
+
+// 做完这题我发现我既不懂回溯也不懂 Golang
 func subsets(nums []int) [][]int {
 	sz := len(nums)
 	ans := &[][]int{}
@@ -21,7 +23,7 @@ func subsets(nums []int) [][]int {
 // 	sz := len(nums)
 // 	if len(*cmb) == l {
 // 		// cmb 直接用指针的话，会出现之前追加到 ans 里的变量也被覆盖成新的 cmb 的问题
-// 		// 怀疑这里最终 append 到 ans 里的是 cmb 的指针？
+// 		// 原因基本可以确定是 cmb 的底层数组都是使用同一个导致的
 // 		*ans = append(*ans, *cmb)
 // 		return
 // 	}
@@ -39,6 +41,10 @@ func subsets(nums []int) [][]int {
 func bt(l, s int, cmb []int, ans *[][]int, nums []int) {
 	sz := len(nums)
 	if len(cmb) == l {
+		// cmb 直接用指针的话，会出现之前追加到 ans 里的变量也被覆盖成新的 cmb 的问题
+		// 原因基本可以确定是 cmb 的底层数组都是使用同一个导致的
+		// 先被 append 进来的 slice 也会随着 cmb 改变
+		// 具体原因需要看 append 底层实现确认
 		tmp := make([]int, len(cmb), len(cmb))
 		copy(tmp, cmb)
 		*ans = append(*ans, tmp)
