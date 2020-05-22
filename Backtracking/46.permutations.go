@@ -5,6 +5,8 @@
  */
 
 // @lc code=start
+
+// 你可能不信，我哭着打字的，上回考双百还是小学
 func permute(nums []int) [][]int {
 	var ans [][]int
 	sz := len(nums)
