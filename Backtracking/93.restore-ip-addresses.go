@@ -7,7 +7,6 @@
 // @lc code=start
 import "strconv"
 
-//
 // 题目表达不够清晰，输入的字符串是完整的 IP （如果符合长度要求的话）
 // 遇到 0 不能丢弃，必须全部用上，所以 0 如果在开头的话必须作为单独一段
 func restoreIpAddresses(s string) []string {
@@ -45,6 +44,7 @@ func bt93(s, c int, str, curr string, ans *[]string) {
 			next += curr + seg
 		}
 		bt93(s+i+1, c+1, str, next, ans)
+		// 0 不能直接丢弃，而是应该让每个出现首位是 0 的分段只有 0
 		if i == 0 && str[s] == '0' {
 			break
 		}
