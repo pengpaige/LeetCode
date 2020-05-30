@@ -22,6 +22,7 @@ func wordBreakBy139(s string, wordDict []string) []string {
 	return ans
 }
 
+// 回溯 从前向后
 func bt140(start int, s, currStr string, wd map[string]struct{}, ans *[]string) {
 	if start == len(s) {
 		*ans = append(*ans, currStr)
@@ -65,6 +66,7 @@ func breakable(s string, wd map[string]struct{}) bool {
 	return dfs(0)
 }
 
+// 回溯 从后向前
 func wordBreak(s string, wordDict []string) []string {
 	sz := len(wordDict)
 	wd := make(map[string]struct{}, sz)
