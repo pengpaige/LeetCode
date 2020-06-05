@@ -29,6 +29,7 @@ func wordBreak(s string, wordDict []string) bool {
 			// 下面的 dp[j] = true 会 dp 中记录的子串越来越长最后达到 s 的总长度
 			if dp[j] && ok {
 				dp[i] = true
+				break
 			}
 		}
 	}
