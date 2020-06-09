@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 找不到优化方法了，这辈子都不可能找到了，单纯 DP 过不了测试例 31 32 
+// 找不到优化方法了，这辈子都不可能找到了，单纯 DP 过不了测试例 31 32
 func wordBreak(s string, wordDict []string) []string {
 	sz := len(s)
 	if sz == 0 {
@@ -22,7 +22,7 @@ func wordBreak(s string, wordDict []string) []string {
 			short = len(w)
 		}
 	}
-	// dp[i] 表示 s 中下标 0~i-1 范围内的字符能拆分成句子
+	// dp[i] 表示 s 中下标 0~i-1 范围内的字符能拆分成句子(可能有多个所以是 slice)
 	dp := make([][]string, sz+1)
 	dp[0] = []string{""}
 	for i := short; i <= sz; i++ {
@@ -35,12 +35,13 @@ func wordBreak(s string, wordDict []string) []string {
 					if dp[j][k] != "" {
 						gap = " "
 					}
-					dp[i] = append(dp[i], dp[j][k] + gap + word)
+					dp[i] = append(dp[i], dp[j][k]+gap+word)
 				}
 			}
 		}
 	}
 	return dp[sz]
 }
+
 // @lc code=end
 
