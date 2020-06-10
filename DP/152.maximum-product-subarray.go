@@ -6,15 +6,38 @@
 
 // @lc code=start
 func maxProduct(nums []int) int {
-	ans, curr := -1<<31, 1
-	for _, n := range nums {
-		if n == 0 {
-			curr = 1
+	ans, cmax, cmin := nums[0], nums[0], nums[0]
+	for i, n := range nums {
+		if i == 0 {
 			continue
 		}
-		curr *= n
-
+		// 需要对正负数分类处理
+		if n >= 0 {
+			cmax = max(n, cmax*n)
+			cmin = min(n, cmin*n)
+		} else {
+			tmp := cmax
+			cmax = max(n, cmin*n)
+			cmin = min(n, tmp*n)
+		}
+		ans = max(ans, cmax)
 	}
+	return ans
 }
+
+func max(a, b int) int {
+	if a < b {
+		return b
+	}
+	return a
+}
+
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
+
 // @lc code=end
 
