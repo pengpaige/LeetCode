@@ -19,6 +19,7 @@ func longestPalindrome(s string) string {
 		dp[i][i] = true
 	}
 
+	// 这里注意，默认单个字符也是回文，所以 maxLen 最少是 1
 	start, maxLen := 0, 1
 	for j := 1; j < len(s); j++ {
 		for i := 0; i < j; i++ {
