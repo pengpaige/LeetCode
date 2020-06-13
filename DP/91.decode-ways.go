@@ -8,6 +8,8 @@ import "strconv"
 
 // @lc code=start
 
+// dp[i] 代表截止到长度为 i 的 s 的成功解码组合数量
+// 这题很像添加了条件的斐波那契额或者爬楼梯问题
 func numDecodings(s string) int {
 	if s[0] == '0' {
 		return 0
@@ -24,7 +26,9 @@ func numDecodings(s string) int {
 			continue
 		}
 
+		// 向前两个数字中有一个 0 的话就忽略 two 的可能
 		if s[i-1-1] == '0' {
+			// 向前两个数字中有两个 0 的话就报错，对于这题就是返回 0
 			if s[i-1] == '0' {
 				return 0
 			}
