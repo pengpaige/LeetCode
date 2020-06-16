@@ -13,7 +13,36 @@
  *     Right *TreeNode
  * }
  */
+
+// iteration
 func inorderTraversal(root *TreeNode) []int {
+	var ans []int
+	if root == nil {
+		return ans
+	}
+	var stack []*TreeNode
+	stack = append(stack, root)
+	for len(stack) > 0 {
+		top := stack[len(stack)-1]
+		for top.Left != nil {
+			stack = append(stack, top.Left)
+			top = stack[len(stack)-1]
+		}
+
+		ans = append(ans, top.Val)
+		stack = stack[:len(stack)-1]
+
+		if top.Right != nil {
+			stack = append(stack, top.Right)
+		} else {
+			ans = append(ans, top.Val)
+			stack = stack[:len(stack)-1]
+		}
+	}
+	return ans
+}
+
+func inorderTraversal_Recursion(root *TreeNode) []int {
 	var ans []int
 	var f func(root *TreeNode)
 	f = func(node *TreeNode) {
@@ -33,5 +62,6 @@ func inorderTraversal(root *TreeNode) []int {
 	f(root)
 	return ans
 }
+
 // @lc code=end
 
