@@ -13,7 +13,28 @@
  *     Right *TreeNode
  * }
  */
+
+//  Iteration
 func preorderTraversal(root *TreeNode) []int {
+	var ans []int
+	var stack []*TreeNode
+	curr := root
+	for curr != nil || len(stack) > 0 {
+		for curr != nil {
+			ans = append(ans, curr.Val)
+			stack = append(stack, curr)
+			curr = curr.Left
+		}
+
+		top := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+
+		curr = top.Right
+	}
+	return ans
+}
+
+func preorderTraversal_Recursion(root *TreeNode) []int {
 	var ans []int
 	var f func(node *TreeNode)
 	f = func(node *TreeNode) {
@@ -32,5 +53,6 @@ func preorderTraversal(root *TreeNode) []int {
 	f(root)
 	return ans
 }
+
 // @lc code=end
 
