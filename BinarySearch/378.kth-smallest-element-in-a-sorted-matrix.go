@@ -13,11 +13,13 @@ func kthSmallest(matrix [][]int, k int) int {
 	for lo <= hi {
 		mid = (lo + hi) / 2
 		curr := check(matrix, mid)
+		// 下面两个条件其实可以合并成 curr <= k
+		// 为了便于理解还是保持最原始的状态
 		if curr == k {
 			if check(matrix, mid-1) < k {
 				return mid
 			}
-			// if check(matrix, mid-1) >= k
+			// if check(matrix, mid-1) == k
 			hi = mid - 1
 		} else if curr > k {
 			if check(matrix, mid-1) < k {
