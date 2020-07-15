@@ -32,24 +32,33 @@ func smallestDistancePair(nums []int, k int) int {
 	return mid
 }
 
+// 返回差值小于等于 guess 的数对的数量
 // @guess 猜测的满足要求的数字
+// 可以 AC 但是效率不高毕竟 O(n^2)
+// func shorterCount(nums []int, guess int) int {
+// 	var count int
+// 	for i := 0; i < len(nums)-1; i++ {
+// 		for j := i+1; j < len(nums); j++ {
+// 			if nums[j]-nums[i] <= guess {
+// 				count++
+// 			}
+// 		}
+// 	}
+// 	return count
+// }
+
+// 返回差值小于等于 guess 的数对的数量
+// @guess 猜测的满足要求的数字
+// 复杂度应该介于 O(n) 和 O(n^2) 之间，但判题系统给出的时间提升很多 10% -> 90%
 func shorterCount(nums []int, guess int) int {
-	var count int
-	for i := 0; i < len(nums); i++ {
-		for j := 0; j < len(nums); j++ {
-			if abs(nums[i]-nums[j]) <= guess {
-				count++
-			}
+	left, count := 0, 0
+	for right := 1; right < len(nums); right++ {
+		for left < len(nums) && nums[right]-nums[left] > guess {
+			left += 1
 		}
+		count += right - left
 	}
 	return count
-}
-
-func abs(a int) int {
-	if a < 0 {
-		return -1 * a
-	}
-	return a
 }
 
 // @lc code=end
