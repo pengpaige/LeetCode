@@ -12,6 +12,7 @@
  *     Next *ListNode
  * }
  */
+// 双指针比 Map 又快又省空间
 func hasCycle(head *ListNode) bool {
 	if head == nil {
 		return false
@@ -46,3 +47,4 @@ func hasCycle_Map(head *ListNode) bool {
 
 // @lc code=end
 
+					

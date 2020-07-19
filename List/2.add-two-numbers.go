@@ -32,6 +32,7 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 		} else {
 			over = 0
 		}
+		// 这里不对 head 做特殊处理，但是最后 return 要返回 head.Next
 		node := &ListNode{
 			Val:  d,
 			Next: nil,
