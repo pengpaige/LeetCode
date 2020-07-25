@@ -30,6 +30,7 @@ func numIslands(grid [][]byte) int {
 		return
 	}
 
+	// 开始扫雷！
 	for c := 0; c < nc; c++ {
 		for r := 0; r < nr; r++ {
 			if grid[c][r] == '1' {
