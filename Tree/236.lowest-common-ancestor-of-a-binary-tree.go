@@ -22,6 +22,7 @@
     if isAcst(q, p) {
         return q
     }
+
     var ans *TreeNode
     var dfs func(node, p, q *TreeNode) (bool, bool)
 	dfs = func(node, p, q *TreeNode) (bool, bool) {
@@ -29,6 +30,7 @@
 			return false, false
 		}
 
+        // 因为是找最低公共祖先，所以使用后续遍历先从左右子树里找是最自然的思路
 		leftFoundP, leftFoundQ := dfs(node.Left, p, q)
 		rightFoundP, rightFoundQ := dfs(node.Right, p, q)
 		foundP, foundQ := leftFoundP || rightFoundP, leftFoundQ || rightFoundQ

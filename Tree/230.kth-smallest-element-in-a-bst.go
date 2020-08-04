@@ -13,6 +13,7 @@
  *     Right *TreeNode
  * }
  */
+// 二叉搜索树通过中序遍历可以对节点的值进行从小到大的排序
 func kthSmallest(root *TreeNode, k int) int {
 	vlist := make([]int, 0)
 	var inOrder func(node *TreeNode)
