@@ -22,6 +22,9 @@ func copyRandomList(head *Node) *Node {
 			return nil
 		}
 		if _, ok := m[node]; ok {
+			// 这里需要返回新的 node 而不是原表 node
+			// 所以只做一个 strct{} 为 value 的 map 还不够
+			// 必须要映射到新 node
 			return m[node]
 		}
 		newNode := &Node{Val: node.Val}
