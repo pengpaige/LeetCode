@@ -13,7 +13,45 @@
  *     Right *ListNode
  * }
  */
- func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
+
+// 20200912
+// 之前的解法在判断是否互为父子, 以及具体回溯的实现过程中, 不够简洁
+// 下面优化之后的解法, 回溯时递归的子流程不再返回 p q 到底找到哪个
+// 只返回本次找到的节点(p 或 q)或者 nil
+// 详细讲解可以看[这里](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/solution/236-er-cha-shu-de-zui-jin-gong-gong-zu-xian-hou-xu/)
+func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
+    if root == nil || root == p || root == q {
+        return root
+    }
+    l := lowestCommonAncestor(root.Left, p, q)
+    r := lowestCommonAncestor(root.Right, p, q)
+    // 首先, 如果 l 和 r 都非空的话, 一定是 p 和 q 分别在 root 左右子树中
+    // 因为, 因为一个节点不可能同时存在于左右子树中
+    // 其次, 在第一次找到这样左右子树分别包含 pq 的 root 之后
+    // 后续的回溯过程中, 上述第一次找到的 root 会一直被向上 return
+    // 直到回溯结束, 其他回溯分支不会再 return 非空的值
+    // 所以最终的返回值就是第一次找到的这个左右子树分别包含 pq 的 root
+    if l != nil && r != nil {
+        return root
+    } else if l == nil {
+        return r
+    } else if r == nil {
+        return l
+    } else {
+        return nil
+    }
+    // 上面的返回结果逻辑可以再简化为下面的
+    // if l == nil {
+    //     return r
+    // } else if r == nil {
+    //     return l
+    // } else {
+    //     return root
+    // }
+}
+
+
+func lowestCommonAncestor_(root, p, q *TreeNode) *TreeNode {
 	// dfs 函数里的逻辑没办法包含 p q 互为父子的情况
 	// 这里只能单独判断
     if isAcst(p, q) {
