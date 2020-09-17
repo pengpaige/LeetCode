@@ -1,3 +1,4 @@
+// 贪心算法 时间复杂度 O(n)
 func maxProfit(prices []int) int {
     if len(prices) < 2 {
         return 0

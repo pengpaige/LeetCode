@@ -23,7 +23,7 @@ func myPow(x float64, n int) float64 {
 	return pow
 }
 
-func myPow_DevideConqure(x float64, n int) float64 {
+func myPow_Recursion_DivideConquer(x float64, n int) float64 {
 	if n < 0 {
 		x = 1 / x
 		n *= -1
