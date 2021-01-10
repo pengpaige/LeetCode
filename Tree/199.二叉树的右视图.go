@@ -23,7 +23,7 @@ func rightSideView_LevelTraverse(root *TreeNode) []int {
 	q := make([]*TreeNode, 0)
 	q = append(q, root)
 	for len(q) != 0 {
-		// 每层把左右边的值放入结果中
+		// 每层把最右边的值放入结果中
 		ans = append(ans, q[len(q)-1].Val)
 		newq := make([]*TreeNode, 0)
 		for len(q) != 0 {
@@ -52,6 +52,7 @@ func rightSideView(root *TreeNode) []int {
 		if node == nil {
 			return
 		}
+		// depth 从 0 开始, ans 的长度也是从 0 开始, 刚好匹配上
 		if len(ans) == depth {
 			ans = append(ans, node.Val)
 		}
